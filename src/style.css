@@ -41,3 +41,8 @@ li {
 .active:hover {
   text-decoration: none;
 }
+
+.ghlink {
+  text-align: center;
+  margin: 0 auto;
+}
