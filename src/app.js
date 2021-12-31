@@ -30,7 +30,8 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#time-date");
   let iconElement = document.querySelector("#icon");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  fahrenheitTemperature = response.data.main.temp;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
   cityElement.innerHTML = response.data.name;
   conditionElement.innerHTML = response.data.weather[0].main;
   humidityElement.innerHTML = response.data.main.humidity;
@@ -54,5 +55,30 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
+function showCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  let celsiusTemperature = (fahrenheitTemperature - 32) * (5 / 9);
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+function showFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+let fahrenheitTemperature = null;
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsius);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheit);
