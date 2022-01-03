@@ -21,6 +21,33 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col-2">
+              <div class="weather-forecast-date">${day}</div>
+              <img
+                src="http://openweathermap.org/img/wn/10d@2x.png"
+                alt="rain"
+                width="45"
+              />
+              <div class="weather-forecast-temperature">
+                <span class="weather-forecast-max"> 18° </span>
+                <span class="weather-forecast-min">12°</span>
+              </div>
+            </div>
+        `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayTemperature(response) {
   console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
@@ -42,7 +69,7 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
-
+displayForecast();
 function search(city) {
   let apiKey = "d2b6d5cec3b2e4e3b79915a7eb969266";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
