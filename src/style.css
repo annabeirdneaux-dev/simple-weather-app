@@ -46,3 +46,20 @@ li {
   text-align: center;
   margin: 0 auto;
 }
+
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.weather-forecast-date {
+  font-size: 16px;
+}
+
+.weather-forecast-max {
+  font-size: 13px;
+}
+
+.weather-forecast-min {
+  font-size: 13px;
+}
